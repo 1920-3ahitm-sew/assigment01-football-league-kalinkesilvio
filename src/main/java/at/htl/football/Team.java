@@ -1,6 +1,6 @@
 package at.htl.football;
 
-public class Team {
+public class Team implements Comparable<Team> {
 
     private String name;
     private int points;

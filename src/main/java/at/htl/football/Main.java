@@ -15,7 +15,6 @@ public class Main {
 
         try(Scanner scanner = new Scanner(new FileReader("bundesliga-1819.csv"))) {
 
-            System.out.println();
             String zeile;
             String[] data;
             String homeTeam;
@@ -23,6 +22,7 @@ public class Main {
             int homeGoals;
             int guestGoals;
 
+            scanner.nextLine();
 
             while (scanner.hasNextLine()) {
                 zeile = scanner.nextLine();
@@ -33,17 +33,30 @@ public class Main {
                 guestGoals = Integer.parseInt(data[4]);
 
                 Match match = new Match(homeTeam, guestTeam, homeGoals, guestGoals);
-                League.addMatchResult(match);
+                league.addMatchResult(match);
+
             }
 
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
         }
 
+        league.getTable();
+        printTable(league.getTable());
+
     }
 
-    public void printTable(List<Team> Liga) {
+    private static void printTable(List<Team> team) {
 
+        System.out.printf("Team                   Pts    W    D    L    GF   GA   GD");
+
+        for (int i = 0; i < team.size(); i++) {
+
+            System.out.printf("%19s %4d %4d %4d %4d %4d %4d %4d", team.get(i).getName(), team.get(i).getPoints(),
+                    team.get(i).getWins(), team.get(i).getDraws(), team.get(i).getDefeats(),
+                    team.get(i).getGoalsShot(), team.get(i).getGoalsReceived(), team.get(i).getGoalDifference());
+
+        }
 
     }
 }
