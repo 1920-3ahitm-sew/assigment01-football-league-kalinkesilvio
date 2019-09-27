@@ -10,11 +10,44 @@ public class Team implements Comparable<Team> {
     private int goalsShot;
     private int goalsReceived;
 
-    public Team(String team) {
+    public Team(String name) {
         this.name = name;
     }
 
     public void addMatch(Match match) {
+
+        if (this.name.equals(match.getHomeTeam())) {
+            points += match.getHomePoints();
+
+            if (match.getHomePoints() == 3) {
+                wins++;
+            } else if (match.getHomePoints() == 1) {
+                draws++;
+            } else {
+                defeats++;
+            }
+
+            goalsShot += match.getHomeGoals();
+            goalsReceived += match.getGuestGoals();
+
+        } else {
+            points += match.getGuestPoints();
+
+            if (match.getGuestPoints() == 3) {
+                wins++;
+            } else if (match.getGuestPoints() == 1) {
+                draws++;
+            } else {
+                defeats++;
+            }
+
+            goalsShot += match.getGuestGoals();
+            goalsReceived += match.getHomeGoals();
+        }
+
+        /*goalsShot = match.getHomeGoals();
+        goalsReceived = match.getGuestGoals();
+
 
         if (this.name.equals(match.getHomeTeam())) {
             if (goalsShot - goalsReceived < 0) {
@@ -36,7 +69,7 @@ public class Team implements Comparable<Team> {
                 this.draws++;
                 this.points += 1;
             }
-        }
+        }*/
 
     }
 

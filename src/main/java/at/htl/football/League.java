@@ -21,17 +21,19 @@ public class League {
 
     private Team findOrCreateTeam(String team) {
 
-        for (int i = 0; i < teams.size(); i++) {
-
-            Team newTeam = new Team(team);
+        for (Team newTeam : teams) {
 
             if (newTeam.getName().equals(team)) {
                 return newTeam;
             }
         }
 
-        teams.add(new Team(team));
-        return teams.get(teams.size() - 1);
+        Team otherTeam = new Team(team);
+
+        teams.add(otherTeam);
+        return otherTeam;
+
+
     }
 
     public List<Team> getTable() {
