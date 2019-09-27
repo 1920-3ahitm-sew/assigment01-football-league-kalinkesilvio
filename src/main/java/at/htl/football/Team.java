@@ -27,6 +27,7 @@ public class Team implements Comparable<Team> {
                 defeats++;
             }
 
+
             goalsShot += match.getHomeGoals();
             goalsReceived += match.getGuestGoals();
 
